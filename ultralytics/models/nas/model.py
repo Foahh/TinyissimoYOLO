@@ -55,7 +55,7 @@ class NAS(Model):
 
         suffix = Path(weights).suffix
         if suffix == ".pt":
-            self.model = torch.load(weights)
+            self.model = torch.load(weights, map_location="cpu", weights_only=False)
         elif suffix == "":
             self.model = super_gradients.training.models.get(weights, pretrained_weights="coco")
         # Standardize model
